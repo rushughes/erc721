@@ -49,3 +49,6 @@ Running migration: 2_deploy_contracts.js
 Saving successful migration to network...
   ... 0xf36163615f41ef7ed8f4a8f192149a0bf633fe1a2398ce001bf44c43dc7bdda0
 Saving artifacts...
+
+// Serves the front-end on http://localhost:3000
+ npm run start

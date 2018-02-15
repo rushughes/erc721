@@ -1,5 +1,0 @@
-admin.nodeInfo.enode
-web3.eth.accounts
-var primaryAccount = web3.eth.accounts[0]
-web3.eth.getBalance(primaryAccount)
-checkAllBalances()
