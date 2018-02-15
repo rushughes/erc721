@@ -75,11 +75,11 @@ class App extends Component {
         fineArtInstance = instance
 
         // Stores a given value, 5 by default.
-        return fineArtInstance.createFineArt(accounts[0], 1, '/ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU', {from: accounts[0]})
+        return fineArtInstance.createFineArt(accounts[0], 3, '/ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU', {from: accounts[0]})
       }).then((result) => {
         console.log(result);
         // Get the value from the contract to prove it worked.
-        return fineArtInstance.tokenMetadata(1)
+        return fineArtInstance.tokenMetadata(3)
       }).then((result) => {
         // Update state with the result.
         console.log(result);
@@ -91,6 +91,7 @@ class App extends Component {
   }
 
   render() {
+    var imageURL = 'http://127.0.0.1:8080/' + this.state.metaDataValue + '/image/default'
     return (
       <div className="App">
         <nav className="navbar pure-menu pure-menu-horizontal">
@@ -106,8 +107,8 @@ class App extends Component {
               <p>If your contracts compiled and migrated successfully, below will show a stored value of 5 (by default).</p>
               <p>Try changing the value stored on <strong>line 59</strong> of App.js.</p>
               <p>The stored value is: {this.state.storageValue}</p>
-              <p>The metadata for token 1 is: {this.state.metaDataValue}</p>
-              <img src="https://ipfs.io/{this.state.metaDataValue}/image/default" height="256" width="256" />
+              <p>The metadata for token 3 is: {this.state.metaDataValue}</p>
+              <img src={imageURL} height="256" width="256" />
             </div>
           </div>
         </main>
