@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
+import FineArtContract from '../build/contracts/FineArt.json'
 import getWeb3 from './utils/getWeb3'
 
 import './css/oswald.css'
@@ -45,13 +46,18 @@ class App extends Component {
 
     const contract = require('truffle-contract')
     const simpleStorage = contract(SimpleStorageContract)
+    const fineArt = contract(FineArtContract)
     simpleStorage.setProvider(this.state.web3.currentProvider)
+    fineArt.setProvider(this.state.web3.currentProvider)
 
     // Declaring this for later so we can chain functions on SimpleStorage.
     var simpleStorageInstance
+    var fineArtInstance
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
+
+/*
       simpleStorage.deployed().then((instance) => {
         simpleStorageInstance = instance
 
@@ -64,6 +70,23 @@ class App extends Component {
         // Update state with the result.
         return this.setState({ storageValue: result.c[0] })
       })
+*/
+      fineArt.deployed().then((instance) => {
+        fineArtInstance = instance
+
+        // Stores a given value, 5 by default.
+        return fineArtInstance.createFineArt(accounts[0], 1, '/ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU', {from: accounts[0]})
+      }).then((result) => {
+        console.log(result);
+        // Get the value from the contract to prove it worked.
+        return fineArtInstance.tokenMetadata(1)
+      }).then((result) => {
+        // Update state with the result.
+        console.log(result);
+        return this.setState({ metaDataValue: result })
+      })
+
+
     })
   }
 
@@ -83,6 +106,8 @@ class App extends Component {
               <p>If your contracts compiled and migrated successfully, below will show a stored value of 5 (by default).</p>
               <p>Try changing the value stored on <strong>line 59</strong> of App.js.</p>
               <p>The stored value is: {this.state.storageValue}</p>
+              <p>The metadata for token 1 is: {this.state.metaDataValue}</p>
+              <img src="https://ipfs.io/{this.state.metaDataValue}/image/default" height="256" width="256" />
             </div>
           </div>
         </main>

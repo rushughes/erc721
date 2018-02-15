@@ -52,3 +52,73 @@ Saving artifacts...
 
 // Serves the front-end on http://localhost:3000
  npm run start
+
+
+FineArt.new().then(function(instance) { console.log(instance.address); }).catch(function(err) { console.log(err) });
+
+truffle(develop)> FineArt.new().then(function(instance) { console.log(instance.address); });
+0xfb88de099e13c3ed21f80a7a1e49f8caecf10df6
+undefined
+
+var instance = FineArt.at("0xaa588d3737b611bafd7bd713445b314bd453a5c8");
+
+truffle(develop)> FineArt.new().then(function(instance) { console.log(instance.address); }).catch(function(err) { console.log(err) });
+0xaa588d3737b611bafd7bd713445b314bd453a5c8
+undefined
+truffle(develop)> var instance = FineArt.at("0xaa588d3737b611bafd7bd713445b314bd453a5c8");
+undefined
+truffle(develop)> instance.createFineArt("0x627306090abab3a6e1400e9345bc60c78a8bef57", 1, 'http://www.slashdot.org');
+{ tx: '0x679ee8d53f9ad68a4cc631df197e4004bed497dfa31d91b53b0eb42a7384362a',
+  receipt:
+   { transactionHash: '0x679ee8d53f9ad68a4cc631df197e4004bed497dfa31d91b53b0eb42a7384362a',
+     transactionIndex: 0,
+     blockHash: '0x9ad471bbee83354790d97f7cba78ee0fca128c8702bf2d82edef2124874a36b4',
+     blockNumber: 11,
+     gasUsed: 135132,
+     cumulativeGasUsed: 135132,
+     contractAddress: null,
+     logs: [ [Object] ],
+     status: 1 },
+  logs:
+   [ { logIndex: 0,
+       transactionIndex: 0,
+       transactionHash: '0x679ee8d53f9ad68a4cc631df197e4004bed497dfa31d91b53b0eb42a7384362a',
+       blockHash: '0x9ad471bbee83354790d97f7cba78ee0fca128c8702bf2d82edef2124874a36b4',
+       blockNumber: 11,
+       address: '0xaa588d3737b611bafd7bd713445b314bd453a5c8',
+       type: 'mined',
+       event: 'Transfer',
+       args: [Object] } ] }
+
+       truffle(develop)> instance.tokenMetadata(1);
+'http://www.slashdot.org'
+
+docker run -d --name ipfs_host -v ipfs_staging:/export -v ipfs_data:/data/ipfs -p 4001:4001 -p 127.0.0.1:8080:8080 -p 127.0.0.1:5001:5001 ipfs/go-ipfs:release
+
+cool-2:assets rus$ ls -al
+total 24
+drwxr-xr-x   4 rus  staff   136 15 Feb 20:43 .
+drwxr-xr-x  24 rus  staff   816 15 Feb 20:36 ..
+-rw-r--r--@  1 rus  staff  8196 15 Feb 20:53 .DS_Store
+drwxr-xr-x   8 rus  staff   272 15 Feb 20:53 1
+cool-2:assets rus$ ipfs add -r 1
+added QmfTd2R8LJPZwvzf4cM69xjHw9eC2H2BdaA3kHMg6Aq1Vq 1/art/default
+added QmbFMke1KXqnYyBBWxB74N4c5SBnJMVAiMNRcGu6x1AwQH 1/description/default
+added QmQkrVrMAy5hgCpWbR32umrQxmVE1QebCjjgrr3Jv4KYmF 1/image/default
+added QmdTAj4PEnC9qgtd4nmVM4q51nEWRHJ3KpS9UxrPjDDQ9u 1/metadata/default
+added QmcrquH4b8WYhvMjD9cGswNuRD12WxoFNLNypMW3VzoLFZ 1/name/default
+added QmQhCQ6KQtmhkFNf21KpXHvSm893EngxWK5YKzeL3rDkng 1/art
+added QmceUyjGQQupkK2Q7nYxwoMpuC2EbTpNLZfBD3WPJYamB1 1/description
+added QmVBKMSs2amo4gGvxsTVgJuLcZ35joZTxzpZyZLNN1aQ5M 1/image
+added QmZ2P3zyTpjVAYWoxnfg1K3kwGgu1jEwS5HLAn9AsNGyzJ 1/metadata
+added QmXMswFYFKQZkj93cTvvzozaTXSnxNRqPcGEKd5fWbtyvH 1/name
+added QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU 1
+cool-2:assets rus$ ipfs name publish /ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU
+Published to QmWcR3k5MkgFQsiFmCiHQJFBR8xzyVJWMy91g8gWTsXjgr: /ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU
+cool-2:assets rus$
+
+cool-2:assets rus$ ipfs key gen --type=rsa --size=2048 rus-ipfs-key
+QmZE4iDwVbv4LFws68ZzrXuowgACLpGrGpgPGDvGvsxDXy
+
+cool-2:assets rus$ ipfs name publish --key=rus-ipfs-key /ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU
+Published to QmZE4iDwVbv4LFws68ZzrXuowgACLpGrGpgPGDvGvsxDXy: /ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU
