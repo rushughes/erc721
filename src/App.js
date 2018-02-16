@@ -14,8 +14,17 @@ class App extends Component {
 
     this.state = {
       storageValue: 0,
-      web3: null
+      web3: null,
+      metaDataValue: '',
+      fineArtInstance: null,
+      tokenId: '',
+      ipns: '',
     }
+
+    this.handleChangeTokenId = this.handleChangeTokenId.bind(this);
+    this.handleChangeIPNS = this.handleChangeIPNS.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   componentWillMount() {
@@ -57,6 +66,8 @@ class App extends Component {
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
 
+      console.log('accounts:', accounts);
+
 /*
       simpleStorage.deployed().then((instance) => {
         simpleStorageInstance = instance
@@ -71,7 +82,8 @@ class App extends Component {
         return this.setState({ storageValue: result.c[0] })
       })
 */
-      fineArt.deployed().then((instance) => {
+
+/*      fineArt.deployed().then((instance) => {
         fineArtInstance = instance
 
         // Stores a given value, 5 by default.
@@ -83,12 +95,58 @@ class App extends Component {
       }).then((result) => {
         // Update state with the result.
         console.log(result);
-        return this.setState({ metaDataValue: result })
+        return this.setState({ metaDataValue: result, fineArtInstance: fineArtInstance })
       })
+*/
 
+      fineArtInstance = fineArt.at("0x9fbda871d559710256a2502a2517b794b482db40");
+      this.setState({ fineArtInstance: fineArtInstance });
 
+      var res = fineArtInstance.tokenMetadata(1).then((result) => {
+        console.log('TM 1:', result);
+        this.setState({ metaDataValue: result });
+        return result;
+      })
+      console.log('potato:', res);
     })
   }
+
+  handleSubmit(event) {
+    console.log(event);
+     event.preventDefault();
+     console.log (this.state.fineArtInstance);
+     console.log (this.state);
+
+     this.state.web3.eth.getAccounts((error, accounts) => {
+
+       this.state.fineArtInstance.createFineArt(
+         accounts[0],
+         this.state.tokenId,
+         this.state.ipns,
+         {from: accounts[0]}
+       ).then((result) => {
+         console.log(result);
+         // Get the value from the contract to prove it worked.
+         return this.state.fineArtInstance.tokenMetadata(this.state.tokenId)
+       }).then((result) => {
+         // Update state with the result.
+         console.log(result);
+       })
+
+     })
+   }
+
+   handleChangeTokenId(event) {
+     console.log(event);
+
+     this.setState({tokenId: event.target.value});
+   }
+
+   handleChangeIPNS(event) {
+     console.log(event);
+
+     this.setState({ipns: event.target.value});
+   }
 
   render() {
     var imageURL = 'http://127.0.0.1:8080/' + this.state.metaDataValue + '/image/default'
@@ -112,6 +170,15 @@ class App extends Component {
             </div>
           </div>
         </main>
+        <form onSubmit={this.handleSubmit}>
+  <label>
+    Token ID:   <input type="text" name="tokenId" value={this.state.tokenId} onChange={this.handleChangeTokenId} />
+  </label>
+  <label>
+    IPNS:   <input type="text" name="ipns" value={this.state.ipns} onChange={this.handleChangeIPNS} />
+  </label>
+  <input type="submit" value="Submit" />
+</form>
       </div>
     );
   }

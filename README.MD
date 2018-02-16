@@ -122,3 +122,18 @@ QmZE4iDwVbv4LFws68ZzrXuowgACLpGrGpgPGDvGvsxDXy
 
 cool-2:assets rus$ ipfs name publish --key=rus-ipfs-key /ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU
 Published to QmZE4iDwVbv4LFws68ZzrXuowgACLpGrGpgPGDvGvsxDXy: /ipfs/QmWyaoTFxd1yg5vJm3P49NVcvEouSqSUpbniK925rKSQQU
+
+cool-2:assets rus$ ipfs add -r 2
+added QmfTd2R8LJPZwvzf4cM69xjHw9eC2H2BdaA3kHMg6Aq1Vq 2/art/default
+added QmUqmdKfZGraczb9JDb57kinvgSgZAPUZKahYiSxrpJjcG 2/description/default
+added QmQkrVrMAy5hgCpWbR32umrQxmVE1QebCjjgrr3Jv4KYmF 2/image/default
+added QmdTAj4PEnC9qgtd4nmVM4q51nEWRHJ3KpS9UxrPjDDQ9u 2/metadata/default
+added QmcrquH4b8WYhvMjD9cGswNuRD12WxoFNLNypMW3VzoLFZ 2/name/default
+added QmQhCQ6KQtmhkFNf21KpXHvSm893EngxWK5YKzeL3rDkng 2/art
+added Qme3BLRVYEJxF9H8x2R1uRLE8GmACq7MMP59m4hjRYJiWL 2/description
+added QmVBKMSs2amo4gGvxsTVgJuLcZ35joZTxzpZyZLNN1aQ5M 2/image
+added QmZ2P3zyTpjVAYWoxnfg1K3kwGgu1jEwS5HLAn9AsNGyzJ 2/metadata
+added QmXMswFYFKQZkj93cTvvzozaTXSnxNRqPcGEKd5fWbtyvH 2/name
+added QmcD15114nUG9abaFAXJ4ERo2rNMJ5B8NXJqkc3Qt6pyru 2
+cool-2:assets rus$ ipfs name publish --key=rus-ipfs-key QmcD15114nUG9abaFAXJ4ERo2rNMJ5B8NXJqkc3Qt6pyru
+Published to QmZE4iDwVbv4LFws68ZzrXuowgACLpGrGpgPGDvGvsxDXy: /ipfs/QmcD15114nUG9abaFAXJ4ERo2rNMJ5B8NXJqkc3Qt6pyru

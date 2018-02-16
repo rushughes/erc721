@@ -1,8 +1,9 @@
 pragma solidity ^0.4.18;
 
 import './zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
+import './zeppelin-solidity/contracts/ownership/Ownable.sol';
 
-contract FineArt is ERC721Token {
+contract FineArt is ERC721Token, Ownable {
   string public constant name = "Fine Art";
   string public constant symbol = "FINEART";
 
@@ -13,7 +14,7 @@ contract FineArt is ERC721Token {
     return infoUrl;
   }
 
-  function createFineArt(address _to, uint256 _tokenId, string _infoURL) public {
+  function createFineArt(address _to, uint256 _tokenId, string _infoURL) onlyOwner public {
     require(_to != address(0));
     _mint(_to, _tokenId);
     metaData[_tokenId] = _infoURL;
